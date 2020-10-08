@@ -1,15 +1,14 @@
-# misc backup files
+# general stuff
 *.sw[po]
 *.bak
 *.tmp
 *~
-
-# compiled files
 *.py[co]
-
-# os cruft
 .DS_Store
 Thumbs.db
 .envrc
 .vscode
 .tool-versions
+
+.linuxbrew/*
+!.linuxbrew/.gitkeep
