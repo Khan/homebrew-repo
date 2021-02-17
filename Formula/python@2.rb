@@ -14,7 +14,7 @@ class PythonAT2 < Formula
 
   bottle do
     root_url "https://github.com/yogieric/homebrew-foobar/releases/download/python@2-2.7.17_1"
-    sha256 "e9b9ef61f9ecc9e86b3600e009180c2b37c9295f764079d9157a8f867167fe4e" => :catalina
+    sha256 catalina: "e9b9ef61f9ecc9e86b3600e009180c2b37c9295f764079d9157a8f867167fe4e"
   end
 
   depends_on "pkg-config" => :build
