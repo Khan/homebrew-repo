@@ -10,7 +10,12 @@ class PythonAT2 < Formula
   url "https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz"
   sha256 "4d43f033cdbd0aa7b7023c81b0e986fd11e653b5248dac9144d508f11812ba41"
   revision 1
-  head "https://github.com/python/cpython.git", :branch => "2.7"
+  head "https://github.com/python/cpython.git", branch: "2.7"
+
+  bottle do
+    root_url "https://github.com/yogieric/homebrew-foobar/releases/download/python@2-2.7.17_1"
+    sha256 catalina: "e9b9ef61f9ecc9e86b3600e009180c2b37c9295f764079d9157a8f867167fe4e"
+  end
 
   depends_on "pkg-config" => :build
   depends_on "gdbm"
@@ -18,7 +23,7 @@ class PythonAT2 < Formula
   depends_on "readline"
   depends_on "sqlite"
   unless OS.mac?
-    depends_on "linuxbrew/xorg/xorg" if build.with? "tcl-tk"
+    depends_on "linuxbrew/xorg/xorg"
     depends_on "bzip2"
     depends_on "ncurses"
     depends_on "zlib"
@@ -326,19 +331,20 @@ class PythonAT2 < Formula
     EOS
   end
 
-  def caveats; <<~EOS
-    Python has been installed as
-      #{HOMEBREW_PREFIX}/bin/python2
+  def caveats
+    <<~EOS
+      Python has been installed as
+        #{HOMEBREW_PREFIX}/bin/python2
 
-    Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
-    `python2`, `python2-config`, `pip2` etc., respectively, have been installed into
-      #{opt_libexec}/bin
+      Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+      `python2`, `python2-config`, `pip2` etc., respectively, have been installed into
+        #{opt_libexec}/bin
 
-    You can install Python packages with
-      pip2 install <package>
-    They will install into the site-package directory
-      #{HOMEBREW_PREFIX/"lib/python2.7/site-packages"}
-  EOS
+      You can install Python packages with
+        pip2 install <package>
+      They will install into the site-package directory
+        #{HOMEBREW_PREFIX/"lib/python2.7/site-packages"}
+    EOS
   end
 
   test do

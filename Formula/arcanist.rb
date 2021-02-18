@@ -1,8 +1,10 @@
 class Arcanist < Formula
   desc "Command-line tool for Phabricator, with some Khan Academy patches"
   homepage "https://github.com/Khan/arcanist"
+  url "https://github.com/Khan/arcanist/archive/dc258511e6082c3eb7c514b6f88c111b3f123195.tar.gz"
+  sha256 "c18ed77431977aa5e02e6fab77b8f75afe02eb36aea913e452f0833cbd1bfcc3"
   license ""
-  head "https://github.com/Khan/arcanist.git"
+  head "https://github.com/Khan/arcanist.git", revision: "dc258511e6082c3eb7c514b6f88c111b3f123195"
 
   depends_on "khan/repo/git-workflow"
   depends_on "php"
@@ -35,9 +37,5 @@ class Arcanist < Formula
 
     # move khan-bin into bin
     mv prefix/"khan-bin/arc", bin/"arc"
-
-  end
-
-  test do
   end
 end

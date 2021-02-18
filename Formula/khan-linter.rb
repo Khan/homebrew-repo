@@ -1,6 +1,8 @@
 class KhanLinter < Formula
-  desc "khan-lint command line linter"
+  desc "Khan-lint command-line linter"
   homepage "https://github.com/Khan/khan-linter"
+  url "https://github.com/Khan/khan-linter/archive/940de62bf73700e49d4321b01cb492d8fac95844.tar.gz"
+  sha256 "ae6370d3fe26b1bc1a9aa52c7d549fcc9586da9fee36cfe9d43dbff932dc8338"
   license ""
   head "https://github.com/Khan/khan-linter.git"
 
@@ -30,9 +32,5 @@ class KhanLinter < Formula
         s.gsub! "/usr/bin/env python", "/usr/bin/env python2"
       end
     end
-
-  end
-
-  test do
   end
 end
