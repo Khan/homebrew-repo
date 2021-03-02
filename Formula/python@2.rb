@@ -10,7 +10,13 @@ class PythonAT2 < Formula
   url "https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz"
   sha256 "4d43f033cdbd0aa7b7023c81b0e986fd11e653b5248dac9144d508f11812ba41"
   revision 1
-  head "https://github.com/python/cpython.git", :branch => "2.7"
+  head "https://github.com/python/cpython.git", branch: "2.7"
+
+  bottle do
+    root_url "https://github.com/yogieric/homebrew-test2/releases/download/python@2-2.7.17_1"
+    sha256 catalina:     "98b2338e594c10f12feb7174710471591f786d42de7da989c235dc49df654f14"
+    sha256 x86_64_linux: "95d8051734d511b62edece78371835a94c71446a6ff05b48b0ced85e87830308"
+  end
 
   depends_on "pkg-config" => :build
   depends_on "gdbm"
@@ -18,7 +24,6 @@ class PythonAT2 < Formula
   depends_on "readline"
   depends_on "sqlite"
   unless OS.mac?
-    depends_on "linuxbrew/xorg/xorg" if build.with? "tcl-tk"
     depends_on "bzip2"
     depends_on "ncurses"
     depends_on "zlib"
@@ -168,7 +173,7 @@ class PythonAT2 < Formula
     (lib/"pkgconfig").install_symlink Dir[frameworks/"Python.framework/Versions/Current/lib/pkgconfig/*"]
 
     # Remove all of the unversioned binaries
-    %w[2to3 idle pydoc python python-config pythonw smtpd.py].each do |f|
+    %w[2to3 idle pydoc python python-config smtpd.py].each do |f|
       rm bin/f
     end
 
@@ -187,13 +192,15 @@ class PythonAT2 < Formula
     (libexec/"pip").install resource("pip")
     (libexec/"wheel").install resource("wheel")
 
-    {
-      "idle"          => "idle2",
-      "pydoc"         => "pydoc2",
-      "python"        => "python2",
-      "python-config" => "python2-config",
-    }.each do |unversioned_name, versioned_name|
-      (libexec/"bin").install_symlink (bin/versioned_name).realpath => unversioned_name
+    if OS.mac?
+      {
+        "idle"          => "idle2",
+        "pydoc"         => "pydoc2",
+        "python"        => "python2",
+        "python-config" => "python2-config",
+      }.each do |unversioned_name, versioned_name|
+        (libexec/"bin").install_symlink (bin/versioned_name).realpath => unversioned_name
+      end
     end
   end
 
@@ -326,19 +333,20 @@ class PythonAT2 < Formula
     EOS
   end
 
-  def caveats; <<~EOS
-    Python has been installed as
-      #{HOMEBREW_PREFIX}/bin/python2
+  def caveats
+    <<~EOS
+      Python has been installed as
+        #{HOMEBREW_PREFIX}/bin/python2
 
-    Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
-    `python2`, `python2-config`, `pip2` etc., respectively, have been installed into
-      #{opt_libexec}/bin
+      Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+      `python2`, `python2-config`, `pip2` etc., respectively, have been installed into
+        #{opt_libexec}/bin
 
-    You can install Python packages with
-      pip2 install <package>
-    They will install into the site-package directory
-      #{HOMEBREW_PREFIX/"lib/python2.7/site-packages"}
-  EOS
+      You can install Python packages with
+        pip2 install <package>
+      They will install into the site-package directory
+        #{HOMEBREW_PREFIX/"lib/python2.7/site-packages"}
+    EOS
   end
 
   test do
