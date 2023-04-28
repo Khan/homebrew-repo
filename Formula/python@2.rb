@@ -108,7 +108,7 @@ class PythonAT2 < Formula
     end
 
     # Avoid linking to libgcc https://code.activestate.com/lists/python-dev/112195/
-    args << "MACOSX_DEPLOYMENT_TARGET=#{MacOS.version}"
+    args << "MACOSX_DEPLOYMENT_TARGET=#{MacOS.version.to_f}"
 
     # We want our readline and openssl! This is just to outsmart the detection code,
     # superenv handles that cc finds includes/libs!
