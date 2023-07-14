@@ -13,7 +13,7 @@ class PythonAT2 < Formula
   head "https://github.com/python/cpython.git", branch: "2.7"
 
   bottle do
-    root_url "https://github.com/yogieric/homebrew-test2/releases/download/python@2-2.7.17_1"
+    root_url "https://github.com/Khan/homebrew-repo/releases/download/python@2-2.7.17_1"
     sha256 catalina:     "98b2338e594c10f12feb7174710471591f786d42de7da989c235dc49df654f14"
     sha256 x86_64_linux: "95d8051734d511b62edece78371835a94c71446a6ff05b48b0ced85e87830308"
   end
