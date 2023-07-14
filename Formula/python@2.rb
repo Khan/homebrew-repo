@@ -14,7 +14,7 @@ class PythonAT2 < Formula
 
   bottle do
     root_url "https://github.com/Khan/homebrew-repo/releases/download/python@2-2.7.17_1"
-    sha256 catalina:     "98b2338e594c10f12feb7174710471591f786d42de7da989c235dc49df654f14"
+    sha256 catalina:     "6554b705f27b23a63d2513557f4feee5c86f01d13670d217d95aa89fc40d4038"
     sha256 x86_64_linux: "95d8051734d511b62edece78371835a94c71446a6ff05b48b0ced85e87830308"
   end
 
